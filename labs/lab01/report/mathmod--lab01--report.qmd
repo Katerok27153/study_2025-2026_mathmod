@@ -18,6 +18,11 @@ subtitle: "Простейший вариант"
 license: "CC BY"
 ---
 
+```{julia}
+using Pkg
+Pkg.activate("/home/eavernikovskaya/work/study/2025-2026/Математическое моделирование/mathmod/labs/lab01/project")
+```
+
 # Цель работы
 
 Здесь приводится формулировка цели лабораторной работы.
@@ -56,6 +61,9 @@ license: "CC BY"
 Описываются проведённые действия, в качестве иллюстрации даётся ссылка на иллюстрацию ([рис. @fig-001]).
 
 ![V Сольвеевский конгресс (1927) «Электроны и фотоны»](image/solvay.jpg){#fig-001 width=70%}
+
+{{< include ../project/markdown/01_exponential_growth_new/01_exponential_growth_new.qmd >}}
+{{< include ../project/markdown/02_exponential_growth/02_exponential_growth.qmd >}}
 
 # Выводы
 
