@@ -3,8 +3,10 @@ name: Mirror to GitVerse
 on:
   push:
     branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+    tags: [ '*' ]
+  release:
+    types: [published, edited]
+  workflow_dispatch:
 
 jobs:
   mirror:
@@ -14,6 +16,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         fetch-depth: 0  # Важно! Полная история
+        fetch-tags: true
     
     - name: Push to GitVerse
       run: |
