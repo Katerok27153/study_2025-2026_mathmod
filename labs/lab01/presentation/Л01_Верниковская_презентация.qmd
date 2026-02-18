@@ -1,0 +1,241 @@
+---
+# Preamble
+
+## Author
+author:
+  name: Верниковская Екатерина Андреевна
+  degrees: DSc
+  email: 11322361366@pfur.ru
+  affiliation:
+    - name: Российский университет дружбы народов
+      country: Российская Федерация
+      postal-code: 117198
+      city: Москва
+      address: ул. Миклухо-Маклая, д. 6
+
+## Title
+title: Отчёт по лабораторной работе №1
+subtitle: Математическое моделирование
+license: CC BY
+date: 2026-18-02
+
+## Generic options
+lang: ru-RU
+crossref:
+  lof-title: Список иллюстраций
+  lot-title: Список таблиц
+  lol-title: Листинги
+
+## Fonts 
+mainfont: PT Serif 
+romanfont: PT Serif 
+sansfont: PT Sans 
+monofont: PT Mono 
+mainfontoptions: Ligatures=TeX 
+romanfontoptions: Ligatures=TeX 
+sansfontoptions: Ligatures=TeX,Scale=MatchLowercase 
+monofontoptions: Scale=MatchLowercase,Scale=0.9
+
+## Formats
+format:
+### Pdf output format
+  beamer:
+    toc: true
+    toc-title: Содержание
+    number-sections: true
+    colorlinks: false
+    toc-depth: 2
+    slide_level: 2
+    aspectratio: 169
+    section-titles: true
+    theme: metropolis
+    themeoptions: progressbar=frametitle,sectionpage=progressbar,numbering=fraction
+    pdf-engine: xelatex
+    fontenc: T2A
+#### Language
+    babel-lang: russian
+    babel-otherlangs: english
+
+### Html output
+  revealjs:
+    transition: slide
+    margin: 0.2
+    smaller: false
+    output-ext: html
+    theme: beige
+    logo: _resources/image/logo_rudn.png
+---
+
+# Вводная часть
+
+## Цель работы
+
+Целью данной работы является подготовка рабочего пространства для выполнения программ и приобретение необходимых навыков создания и преобразования программ на Julia
+
+# Выполнение лабораторной работы
+
+## Создание проекта DrWatson для лабораторных
+
+![Установка julia](image/лаба1_1.png){#fig-001 width=70%}
+
+## Создание проекта DrWatson для лабораторных
+
+![julia](image/лаба1_2.png){#fig-002 width=70%}
+
+## Создание проекта DrWatson для лабораторных
+
+![Директория labs/lab01](image/лаба1_3.png){#fig-003 width=70%}
+
+## Создание проекта DrWatson для лабораторных
+
+![Создание файла setup_project.jl](image/лаба1_4.png){#fig-004 width=70%}
+
+## Создание проекта DrWatson для лабораторных
+
+![Скрипт setup_project.jl](image/лаба1_5.png){#fig-005 width=70%}
+
+## Создание проекта DrWatson для лабораторных
+
+![Создание каталога DrWatson](image/лаба1_6.png){#fig-006 width=70%}
+
+## Создание проекта DrWatson для лабораторных
+
+![Создание файла add_packages.jl](image/лаба1_7.png){#fig-007 width=70%}
+
+## Создание проекта DrWatson для лабораторных
+
+![Скрипт add_packages.jl](image/лаба1_8.png){#fig-008 width=70%}
+
+## Создание проекта DrWatson для лабораторных
+
+![Добавление необходимых пакетов](image/лаба1_9.png){#fig-009 width=70%}
+
+## Создание проекта DrWatson для лабораторных
+
+![Создание файла scripts/test_setup.jl](image/лаба1_10.png){#fig-010 width=70%}
+
+## Создание проекта DrWatson для лабораторных
+
+![Скрипт add_packages.jl](image/лаба1_11.png){#fig-011 width=40%}
+
+## Создание проекта DrWatson для лабораторных
+
+![Проверка установки](image/лаба1_12.png){#fig-012 width=70%}
+
+## Создание проекта DrWatson для лабораторных
+
+![Итоговая структура проекта](image/лаба1_13.png){#fig-013 width=70%}
+
+## Модель экспоненциального роста
+
+![Создание файла scripts/01_exponential_growth.jl](image/лаба1_14.png){#fig-014 width=70%}
+
+## Модель экспоненциального роста
+
+![Скрипт 01_exponential_growth.jl (1)](image/лаба1_15.png){#fig-015 width=70%}
+
+## Модель экспоненциального роста
+
+![Результаты выполнения 01_exponential_growth.jl (1)](image/лаба1_16.png){#fig-016 width=70%}
+
+## Модель экспоненциального роста
+
+![График после выполнения 01_exponential_growth.jl](image/лаба1_17.png){#fig-017 width=70%}
+
+## Модель экспоненциального роста
+
+![Скрипт 01_exponential_growth.jl (2)](image/лаба1_18.png){#fig-018 width=50%}
+
+## Модель экспоненциального роста
+
+![Результаты выполнения 01_exponential_growth.jl (2)](image/лаба1_19.png){#fig-019 width=70%}
+
+## Модель экспоненциального роста
+
+![Создание файла scripts/tangle.jl](image/лаба1_20.png){#fig-020 width=70%}
+
+## Модель экспоненциального роста
+
+![Скрипт tangle.jl](image/лаба1_21.png){#fig-021 width=50%}
+
+## Модель экспоненциального роста
+
+![Создание производных форматов (1)](image/лаба1_22.png){#fig-022 width=70%}
+
+## Модель экспоненциального роста
+
+![Выполнение Jupyter-ноутбук (1)](image/лаба1_23.png){#fig-023 width=70%}
+
+## Модель экспоненциального роста
+
+![Результаты Jupyter-ноутбук (1)](image/лаба1_24.png){#fig-024 width=70%}
+
+## Модель экспоненциального роста
+
+![Редактирование файла _quarto.yml](image/лаба1_25.png){#fig-025 width=70%}
+
+## Модель экспоненциального роста
+
+![Редактирование файла preamble.tex](image/лаба1_26.png){#fig-026 width=70%}
+
+## Модель экспоненциального роста
+
+![Редактирование файла отчёта (1)](image/лаба1_27.png){#fig-027 width=70%}
+
+## Модель экспоненциального роста
+
+![Редактирование файла 01_exponential_growth.jl](image/лаба1_28.png){#fig-028 width=70%}
+
+## Модель экспоненциального роста
+
+![Решение пролемы с TeX Live](image/лаба1_29.png){#fig-029 width=70%}
+
+## Модель экспоненциального роста
+
+![Компиляция отчёта (1)](image/лаба1_30.png){#fig-030 width=70%}
+
+## Модель экспоненциального роста
+
+![Отчёт (1)](image/лаба1_31.png){#fig-031 width=70%}
+
+## Модель с параметрами
+
+![Скрипт 02_exponential_growth.jl](image/лаба1_32.png){#fig-032 width=70%}
+
+## Модель с параметрами
+
+![Результаты выполнения 02_exponential_growth.jl](image/лаба1_33.png){#fig-033 width=70%}
+
+## Модель с параметрами
+
+![Создание производных форматов (2)](image/лаба1_34.png){#fig-034 width=70%}
+
+## Модель с параметрами
+
+![Выполнение Jupyter-ноутбук (2)](image/лаба1_35.png){#fig-035 width=70%}
+
+## Модель с параметрами
+
+![Результаты Jupyter-ноутбук (2)](image/лаба1_36.png){#fig-036 width=70%}
+
+## Модель с параметрами
+
+![Редактирование файла отчёта (2)](image/лаба1_37.png){#fig-037 width=70%}
+
+## Модель с параметрами
+
+![Компиляция отчёта (2)](image/лаба1_38.png){#fig-038 width=70%}
+
+## Модель с параметрами
+
+![Отчёт (2)](image/лаба1_39.png){#fig-039 width=70%}
+
+# Подведение итогов
+
+## Выводы
+
+В ходе выполнения лабораторной работы №1 мы подготовили рабочее пространство для выполнения программ и приобрели необходимые навыки создания и преобразования программ на Julia
+
+## Список литературы
+
+1. [Лаборатораня работа №1](https://esystem.rudn.ru/pluginfile.php/3094821/mod_resource/content/1/mathmod-lab.pdf)
