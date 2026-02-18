@@ -22,15 +22,30 @@ jobs:
       run: |
         git remote add gitverse https://${{ secrets.GITVERSE_TOKEN }}@gitverse.ru/Katerok27153/study_2025-2026_mathmod.git
         
-        # Отправляем все ветки (без удаления)
-        echo "Pushing branches..."
-        git push gitverse --all --force-with-lease
+ 	# Получаем актуальное состояние
+        git fetch --all
         
-        # Отправляем все теги (без удаления)
+        # Отправляем все ветки, кроме master, с force-with-lease
+        echo "Pushing non-master branches..."
+        for branch in $(git branch -r | grep -v "HEAD" | grep -v "master" | grep -v "main" | sed 's/origin\///'); do
+          if [ ! -z "$branch" ]; then
+            echo "Pushing branch: $branch"
+            git push gitverse origin/$branch:$branch --force-with-lease || \
+            git push gitverse origin/$branch:$branch --force
+          fi
+        done
+        
+        # Отправляем main если есть
+        echo "Pushing main branch..."
+        git push gitverse origin/main:main --force-with-lease || \
+        git push gitverse origin/main:main --force || \
+        echo "main not found or push failed"
+        
+        # Отправляем master с force (так как это защищенная ветка)
+        echo "Pushing master branch..."
+        git push gitverse origin/master:master --force || \
+        echo "master not found"
+        
+        # Отправляем теги
         echo "Pushing tags..."
-        git push gitverse --tags --force-with-lease
-        
-        # Явно отправляем main/master если они есть
-        echo "Ensuring default branches..."
-        git push gitverse origin/main:main --force-with-lease || true
-        git push gitverse origin/master:master --force-with-lease || true
+        git push gitverse --tags --force
