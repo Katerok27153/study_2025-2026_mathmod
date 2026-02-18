@@ -1,0 +1,310 @@
+---
+## Author
+author:
+  name: Верниковская Екатерина Андреевна
+  degrees: DSc
+  orcid: 0000-0002-0877-7063
+  email: kulyabov-ds@rudn.ru
+  affiliation:
+    - name: Российский университет дружбы народов
+      country: Российская Федерация
+      postal-code: 117198
+      city: Москва
+      address: ул. Миклухо-Маклая, д. 6
+
+## Title
+title: "Отчёт по лабораторной работе №1"
+subtitle: "Дисциплина: Математическое моделирование"
+license: "CC BY"
+---
+
+# Цель работы
+
+Целью данной работы является подготовка рабочего пространства для выполнения программ и приобретение необходимых навыков создания и преобразования программ на Julia
+
+# Задание
+
+1. Создать рабочий каталог для всего курса.
+2. Создать рабочее пространство для программ в рамках лабораторной работы.
+3. Выполнить все задания по тексту лабораторной работы.
+4. Установить необходимые пакеты.
+5. Выполнить предложенный код.
+6. Преобразовать код в литературный стиль.
+7. Сгенерировать из литературного кода:
+- чистый код;
+- jupyter notebook;
+- документацию в формате Quarto.
+8. Выполнить код из jupyter notebook.
+9. Интегрировать документацию в формате Quarto в отчёт.
+10. Добавить в код в литературном стиле вычисление для набора параметров.
+11. Сгенерировать из литературного кода с параметрами:
+- чистый код;
+- jupyter notebook;
+- документацию в формате Quarto.
+12. Выполнить код из jupyter notebook с параметрами.
+13. Интегрировать документацию с параметрами в формате Quarto в отчёт.
+
+# Выполнение лабораторной работы
+
+## Создание проекта DrWatson для лабораторных
+
+Установили в нашей операционной системе julia: ```sudo snap install julia --classic``` ([рис. @fig-001]), ([рис. @fig-002])
+
+![Установка julia](image/лаба1_1.png){#fig-001 width=70%}
+
+![julia](image/лаба1_2.png){#fig-002 width=70%}
+
+Перешли в директорию *labs/lab01* ([рис. @fig-003])
+
+![Директория labs/lab01](image/лаба1_3.png){#fig-003 width=70%}
+
+### Создание каталога проекта DrWatson
+
+Далее создали каталога проекта DrWatson через скрипт. Сначала создали файл *setup_project.jl* со следующим содержанием ([рис. @fig-004]), ([рис. @fig-005]):
+
+```
+##!/usr/bin/env julia
+## setup_project.jl
+using Pkg
+Pkg.add("DrWatson")
+using DrWatson
+## Создание проекта
+project_name = "project"
+initialize_project(project_name; authors="Верниковская Екатерина", git=false)
+println("✅ Проект создан: ", project_name)
+println("� Перейдите в директорию: cd ", project_name)
+```
+
+![Создание файла setup_project.jl](image/лаба1_4.png){#fig-004 width=70%}
+
+![Скрипт setup_project.jl](image/лаба1_5.png){#fig-005 width=70%}
+
+Далее запустили скрипт командой ```julia setup_project.jl``` ([рис. @fig-006])
+
+![Создание каталога DrWatson](image/лаба1_6.png){#fig-006 width=70%}
+
+### Добавление необходимых пакетов
+
+Далее добавили необходимые пакеты. Для этого создали файл *add_packages.jl* в корне проекта (```cd project```) следующим содержанием ([рис. @fig-007]), ([рис. @fig-008]):
+
+```
+##!/usr/bin/env julia
+## add_packages.jl
+using Pkg
+Pkg.activate(".") # Активируем текущий проект
+## ОСНОВНЫЕ ПАКЕТЫ ДЛЯ РАБОТЫ
+packages = [
+"DrWatson", # Организация проекта
+"DifferentialEquations", # Решение ОДУ
+"Plots", # Визуализация
+"DataFrames", # Таблицы данных
+"CSV", # Работа с CSV
+"JLD2", # Сохранение данных
+"Literate", # Literate programming
+"IJulia", # Jupyter notebook
+"BenchmarkTools", # Бенчмаркинг
+"Quarto" # Создание отчетов
+]
+println("Установка базовых пакетов...")
+Pkg.add(packages)
+println("\n✅ Все пакеты установлены!")
+println("Для проверки: using DrWatson, DifferentialEquations, Plots")
+```
+
+![Создание файла add_packages.jl](image/лаба1_7.png){#fig-007 width=70%}
+
+![Скрипт add_packages.jl](image/лаба1_8.png){#fig-008 width=70%}
+
+Далее запустили скрипт командой ```julia add_packages.jl``` ([рис. @fig-009])
+
+![Добавление необходимых пакетов](image/лаба1_9.png){#fig-009 width=70%}
+
+### Проверка установки
+
+Далее проверили установку. Для этого создали файл *scripts/test_setup.jl* следующим содержанием ([рис. @fig-010]), ([рис. @fig-011]):
+
+```
+##!/usr/bin/env julia
+## test_setup.jl
+using DrWatson
+@quickactivate "project"
+println("✅ Проект активирован: ", projectdir())
+## Проверка пакетов
+packages = [
+"DrWatson", # Организация проекта
+"DifferentialEquations", # Решение ОДУ
+"Plots", # Визуализация
+"DataFrames", # Таблицы данных
+"CSV", # Работа с CSV
+"JLD2", # Сохранение данных
+"Literate", # Literate programming
+"IJulia", # Jupyter notebook
+"BenchmarkTools", # Бенчмаркинг
+"Quarto" # Создание отчетов
+]
+println("\nПроверка пакетов:")
+for pkg in packages
+try
+eval(Meta.parse("using $pkg"))
+println(" ✓ $pkg")
+catch e
+println(" ✗ $pkg: Ошибка загрузки")
+end
+end
+## Проверка путей
+println("\nСтруктура проекта:")
+println(" Корень: ", projectdir())
+println(" Данные: ", datadir())
+println(" Скрипты: ", srcdir())
+println(" Графики: ", plotsdir())
+```
+
+![Создание файла scripts/test_setup.jl](image/лаба1_10.png){#fig-010 width=70%}
+
+![Скрипт add_packages.jl](image/лаба1_11.png){#fig-011 width=70%}
+
+Далее запустили скрипт командой ```julia --project=. scripts/test_setup.jl``` ([рис. @fig-012]), ([рис. @fig-013])
+
+![Проверка установки](image/лаба1_12.png){#fig-012 width=70%}
+
+![Итоговая структура проекта](image/лаба1_13.png){#fig-013 width=70%}
+
+## Модель экспоненциального роста
+
+### Реализация модели
+
+Далее реализовали модель экспоненциального роста. Создали скрипт *scripts/01_exponential_growth.jl* ([рис. @fig-014]), ([рис. @fig-015])
+
+![Создание файла scripts/01_exponential_growth.jl](image/лаба1_14.png){#fig-014 width=70%}
+
+![Скрипт 01_exponential_growth.jl (1)](image/лаба1_15.png){#fig-015 width=70%}
+
+Далее выполнили скрипт командой ```julia --project=. scripts/01_exponential_growth.jl``` и посмотрели результирующие графики в каталоге *plots/* ([рис. @fig-016]), ([рис. @fig-017])
+
+![Результаты выполнения 01_exponential_growth.jl (1)](image/лаба1_16.png){#fig-016 width=70%}
+
+![График после выполнения 01_exponential_growth.jl](image/лаба1_17.png){#fig-017 width=70%}
+
+### Литературная реализация модели
+
+Добавили в файл описание в духе литературного программирования. Изменили скрипт *scripts/01_exponential_growth.lj* ([рис. @fig-018])
+
+![Скрипт 01_exponential_growth.jl (2)](image/лаба1_18.png){#fig-018 width=70%}
+
+Далее снова выполнили скрипт командой ```julia --project=. scripts/01_exponential_growth.jl``` ([рис. @fig-019])
+
+![Результаты выполнения 01_exponential_growth.jl (2)](image/лаба1_19.png){#fig-019 width=70%}
+
+### Создание производных форматов
+
+Далее создали скрипт для генерации производных форматов *scripts/tangle.jl* ([рис. @fig-020]), ([рис. @fig-021])
+
+![Создание файла scripts/tangle.jl](image/лаба1_20.png){#fig-020 width=70%}
+
+![Скрипт tangle.jl](image/лаба1_21.png){#fig-021 width=70%}
+
+Создали производные форматы: ```julia --project=. scripts/tangle.jl scripts/01_exponential_growth.jl``` ([рис. @fig-022])
+
+![Создание производных форматов (1)](image/лаба1_22.png){#fig-022 width=70%}
+
+### Jupyter notebook
+
+Далее выполнили Jupyter-ноутбук командой: ```jupyter notebook notebooks/01_exponential_growth/01_exponential_growth.ipynb``` ([рис. @fig-023]), ([рис. @fig-024])
+
+![Выполнение Jupyter-ноутбук (1)](image/лаба1_23.png){#fig-023 width=70%}
+
+![Результаты Jupyter-ноутбук (1)](image/лаба1_24.png){#fig-024 width=70%}
+
+### Документирование в отчёте
+
+В каталоге отчёта в файл *_quarto.yml* включили поддержку кода julia ([рис. @fig-025]):
+
+```
+engine: julia
+julia:
+	exeflags: ["--project=../project"]
+```
+
+![Редактирование файла _quarto.yml](image/лаба1_25.png){#fig-025 width=70%}
+
+В преамбуле *preamble.tex* подключили пакет juliamono ([рис. @fig-026]):
+
+```
+\usepackage[Scale=MatchUppercase]{juliamono}
+```
+
+![Редактирование файла preamble.tex](image/лаба1_26.png){#fig-026 width=70%}
+
+В файле отчёта после описания выполнения лабораторной работы подключили файл описания программы ([рис. @fig-027])
+
+![Редактирование файла отчёта (1)](image/лаба1_27.png){#fig-027 width=70%}
+
+Далее надо было скомпелировать отчёт, что в ходе выполнения работы у меня не получалось. Мне пришлось заменить название файла на *01_exponential_growth_new.jl*, добавить туда несколько строк, а также поменять источник, откуда TeX Live скачивал обновления, так как с ним тоже была проблема ([рис. @fig-028]), ([рис. @fig-029])
+
+Добавленные строки в файл *01_exponential_growth.jl*:
+
+```
+using Pkg
+Pkg.activate("../project")
+using Plots
+default(fmt = :png)
+```
+
+![Редактирование файла 01_exponential_growth.jl](image/лаба1_28.png){#fig-028 width=70%}
+
+![Решение пролемы с TeX Live](image/лаба1_29.png){#fig-029 width=70%}
+
+В итоге отчёт скомпелировался ([рис. @fig-030]), ([рис. @fig-031])
+
+![Компиляция отчёта (1)](image/лаба1_30.png){#fig-030 width=70%}
+
+![Отчёт (1)](image/лаба1_31.png){#fig-031 width=70%}
+
+## Модель с параметрами
+
+### Реализация модели с параметрами
+
+Создали файл с программой *scripts/02_exponential_growth.jl* ([рис. @fig-032])
+
+![Скрипт 02_exponential_growth.jl](image/лаба1_32.png){#fig-032 width=70%}
+
+Далее выполнили программу командой ```julia --project=. scripts/02_exponential_growth.jl``` ([рис. @fig-033])
+
+![Результаты выполнения 02_exponential_growth.jl](image/лаба1_33.png){#fig-033 width=70%}
+
+### Создание производных форматов
+
+Создали производные форматы: ```julia --project=. scripts/tangle.jl scripts/02_exponential_growth.jl``` ([рис. @fig-034])
+
+![Создание производных форматов (2)](image/лаба1_34.png){#fig-034 width=70%}
+
+### Jupyter notebook
+
+Далее выполнили Jupyter-ноутбук командой: ```jupyter notebook notebooks/02_exponential_growth/02_exponential_growth.ipynb``` ([рис. @fig-035]), ([рис. @fig-036])
+
+![Выполнение Jupyter-ноутбук (2)](image/лаба1_35.png){#fig-035 width=70%}
+
+![Результаты Jupyter-ноутбук (2)](image/лаба1_36.png){#fig-036 width=70%}
+
+### Документирование в отчёте
+
+В файле отчёта после описания выполнения лабораторной работы подключили файл описания программы ([рис. @fig-037])
+
+![Редактирование файла отчёта (2)](image/лаба1_37.png){#fig-037 width=70%}
+
+Скомпилировали отчёт ([рис. @fig-038]), ([рис. @fig-039])
+
+![Компиляция отчёта (2)](image/лаба1_38.png){#fig-038 width=70%}
+
+![Отчёт (2)](image/лаба1_39.png){#fig-039 width=70%}
+
+{{< include ../project/markdown/01_exponential_growth_new/01_exponential_growth_new.qmd >}}
+{{< include ../project/markdown/02_exponential_growth/02_exponential_growth.qmd >}}
+
+# Выводы
+
+В ходе выполнения лабораторной работы №1 мы подготовили рабочее пространство для выполнения программ и приобрели необходимые навыки создания и преобразования программ на Julia
+
+# Список литературы
+
+1. [Лаборатораня работа №1](https://esystem.rudn.ru/pluginfile.php/3094821/mod_resource/content/1/mathmod-lab.pdf)
