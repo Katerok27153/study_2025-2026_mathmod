@@ -1,0 +1,32 @@
+using DrWatson
+@quickactivate "project"
+using OrdinaryDiffEq
+using Plots
+default(fmt = :png)
+
+gr()
+default(fmt = :png, size = (800, 450))
+
+tspan = (0, 33)
+p = [3, 0.3]        # [2γ, ω₀²] где 2γ = 3, ω₀² = 0.3
+du0 = [1.3]        # начальная скорость (ẋ₀ = 1.3)
+u0 = [0.3]          # начальное положение (y₀ = 0.3)
+
+function f(ddu, du, u, p, t)
+    g, w = p
+    ddu .= -g.*du .- w.*u
+end
+
+prob = SecondOrderODEProblem(f, du0, u0, tspan, p)
+sol = solve(prob, DPRKN6(), saveat=0.05)
+
+p1 = plot(sol, idxs=(0, 1), label="y(t)", xlabel="t", ylabel="x, y",
+          title="Колебания c затуханием и без внешней силы", linewidth=2)
+plot!(p1, sol, idxs=(0, 2), label="x(t)", linewidth=2)
+
+p2 = plot(sol, idxs=(2, 1), label="y от x", xlabel="x", ylabel="y",
+          title="Фазовый портрет с затуханием и без внешней силы", linewidth=2)
+
+mkpath(plotsdir("lab04_2"))
+savefig(p1, plotsdir("lab04_2", "case2_time_variant67.png"))
+savefig(p2, plotsdir("lab04_2", "case2_phase_variant67.png"))

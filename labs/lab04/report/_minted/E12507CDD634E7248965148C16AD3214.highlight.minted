@@ -1,0 +1,4 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n}{gr}\PYG{p}{()}
+\PYG{n}{default}\PYG{p}{(}\PYG{n}{fmt}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+ss}{:png}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{size}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{800}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{450}\PYG{p}{))}
+\end{MintedVerbatim}

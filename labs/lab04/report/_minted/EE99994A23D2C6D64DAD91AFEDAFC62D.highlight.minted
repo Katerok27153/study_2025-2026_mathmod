@@ -1,0 +1,4 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n}{display}\PYG{p}{(}\PYG{n}{p1}\PYG{p}{)}
+\PYG{n}{display}\PYG{p}{(}\PYG{n}{p2}\PYG{p}{)}
+\end{MintedVerbatim}
