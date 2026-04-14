@@ -1,0 +1,87 @@
+## Модель Лотки-Вольтерры
+Вариант 67: $$ \begin{cases}  \frac{dx}{dt} = -0.81\,x(t) + 0.048\,x(t)y(t) \\  \frac{dy}{dt} = 0.76\,y(t) - 0.038\,x(t)y(t)  \end{cases} $$
+
+```{julia}
+using DrWatson
+@quickactivate "project"
+using OrdinaryDiffEq
+using Plots
+default(fmt = :png)
+```
+
+Начальные условия
+
+```{julia}
+u0 = [7, 29]
+p = [-0.81, -0.048, -0.76, -0.038]
+tspan = (0, 50)
+```
+
+Cистема ДУ, описывающая модель Лотки-Вольтерры
+
+```{julia}
+function f(u, p, t)
+    x, y = u
+    a, b, c, d = p
+    dx = a*x -b*x*y
+    dy = -c*y + d*x*y
+    return [dx, dy]
+end
+```
+
+Создание и решение задачи
+
+```{julia}
+prob1 = ODEProblem(f, u0, tspan, p)
+sol1 = solve(prob1, Tsit5())
+```
+
+График решения модели
+
+```{julia}
+p1 = plot(sol1, title="Модель Лотки-Вольтерры", xlabel="Время", ylabel="Численность популяции", label=["жертвы" "хищники"])
+```
+
+Фазовый портрет (y от x)
+
+```{julia}
+p2 = plot(sol1, idxs=(1, 2), title="Фазовый портрет", xlabel="x, жертвы", ylabel="y, хищники", label="y от x")
+```
+
+Стационарное состояние системы
+
+```{julia}
+x_s = p[3]/p[4]
+y_s = p[1]/p[2]
+u0_s = [x_s, y_s]
+```
+
+Создание и решение задачи (стационарное состояние системы)
+
+```{julia}
+prob2 = ODEProblem(f, u0_s, tspan, p)
+sol2 = solve(prob2, Tsit5())
+```
+
+График решения модели (стационарное состояние системы)
+
+```{julia}
+p3 = plot(sol2, title="Модель Лотки-Вольтерры", xlabel="Время", ylabel="Численность популяции", label=["жертвы" "хищники"])
+```
+
+Фазовый портрет (y от x) (стационарное состояние системы)
+
+```{julia}
+p4 = plot(sol2, idxs=(1, 2), title="Фазовый портрет", xlabel="x, жертвы", ylabel="y, хищники", label="y от x", xlimit = [0, 25], ylimit = [0, 25], lw = 5)
+```
+
+Сохранение
+
+```{julia}
+mkpath(plotsdir("lab05"))
+savefig(p1, plotsdir("lab05", "case1_time_variant67.png"))
+savefig(p2, plotsdir("lab05", "case1_phase_variant67.png"))
+savefig(p3, plotsdir("lab05", "case2_time_variant67.png"))
+savefig(p4, plotsdir("lab05", "case2_phase_variant67.png"))
+```
+
