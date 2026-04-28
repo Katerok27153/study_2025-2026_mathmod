@@ -1,0 +1,10 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k}{function}\PYG{+w}{ }\PYG{n}{sir}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,}\PYG{n}{p}\PYG{p}{,}\PYG{n}{t}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{(}\PYG{n}{S}\PYG{p}{,}\PYG{n}{I}\PYG{p}{,}\PYG{n}{R}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{u}
+\PYG{+w}{    }\PYG{p}{(}\PYG{n}{α}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{β}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{p}
+\PYG{+w}{    }\PYG{n}{dS}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}
+\PYG{+w}{    }\PYG{n}{dI}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{β}\PYG{o}{*}\PYG{n}{I}
+\PYG{+w}{    }\PYG{n}{dR}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{β}\PYG{o}{*}\PYG{n}{I}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{dS}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dI}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dR}\PYG{p}{]}
+\PYG{k}{end}
+\end{MintedVerbatim}

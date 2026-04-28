@@ -1,0 +1,5 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n}{prob}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ODEProblem}\PYG{p}{(}\PYG{n}{sir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{u0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tspan}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{p}\PYG{p}{)}
+\PYG{n}{sol}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{solve}\PYG{p}{(}\PYG{n}{prob}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Tsit5}\PYG{p}{(),}\PYG{+w}{ }\PYG{n}{saveat}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{n}{p}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{plot}\PYG{p}{(}\PYG{n}{sol}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{label}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+s}{\PYGZdq{}S\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}I\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}R\PYGZdq{}}\PYG{p}{])}
+\end{MintedVerbatim}

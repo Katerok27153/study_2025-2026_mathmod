@@ -1,0 +1,38 @@
+# ## Задача об эпидемии в случае если $I(0) \le I^*$
+# Вариант 67: N = 15089, I(0) = 95, R(0) = 45
+
+# Инициализация проекта
+using DrWatson
+@quickactivate "project"
+using OrdinaryDiffEq, Plots
+default(fmt = :png)
+
+# Начальные условия
+N = 15089
+I_0 = 95
+R_0 = 45
+S_0 = N - I_0 - R_0
+u0 = [S_0, I_0, R_0]
+p = [0.5, 0.1]
+tspan = (0.0, 50.0)
+
+# Функция решения ДУ в случае $I(0) \le I^*$
+function sir(u,p,t)
+    (S,I,R) = u
+    (α, β) = p
+    dS = 0
+    dI = -β*I
+    dR = β*I
+    return [dS, dI, dR]
+end
+
+
+# Создание и решение задачи
+prob = ODEProblem(sir, u0, tspan, p)
+sol = solve(prob, Tsit5(), saveat = 0.1)
+p = plot(sol, label = ["S" "I" "R"])
+
+# Сохранение результатов
+mkpath(plotsdir("lab06_1"))
+savefig(p, plotsdir("lab06_1", "lab06_1.png"))
+

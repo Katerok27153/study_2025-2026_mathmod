@@ -1,4 +1,4 @@
-# ## Модель Лотки-Вольтерры
+# ## Задача об эпидемии
 # Вариант 67: $$ \begin{cases}  \frac{dx}{dt} = -0.81\,x(t) + 0.048\,x(t)y(t) \\  \frac{dy}{dt} = 0.76\,y(t) - 0.038\,x(t)y(t)  \end{cases} $$
 
 using DrWatson
