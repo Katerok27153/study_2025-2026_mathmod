@@ -1,0 +1,131 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k}{using}\PYG{+w}{ }\PYG{n}{Graphs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{GraphPlot}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Random}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Compose}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Cairo}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Fontconfig}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Colors}
+
+\PYG{n}{Random}\PYG{o}{.}\PYG{n}{seed!}\PYG{p}{(}\PYG{l+m+mi}{42}\PYG{p}{)}
+
+\PYG{n}{N}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{20}
+\PYG{n}{REMOVE\PYGZus{}K}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{5}
+
+\PYG{n}{NODE\PYGZus{}SIZE\PYGZus{}NORMAL}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.002}
+\PYG{n}{NODE\PYGZus{}SIZE\PYGZus{}HUB}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.004}
+\PYG{n}{EDGE\PYGZus{}WIDTH}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{2.0}
+\PYG{n}{LABEL\PYGZus{}SIZE}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{30}
+\PYG{n}{IMG\PYGZus{}W}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{500}
+\PYG{n}{IMG\PYGZus{}H}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{500}
+
+\PYG{n}{g\PYGZus{}original}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{barabasi\PYGZus{}albert}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}
+\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{spring\PYGZus{}layout}\PYG{p}{(}\PYG{n}{g\PYGZus{}original}\PYG{p}{)}
+
+\PYG{k}{function}\PYG{+w}{ }\PYG{n}{save\PYGZus{}png}\PYG{p}{(}\PYG{n}{name}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{plot}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{img}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{compose}\PYG{p}{(}\PYG{n}{Compose}\PYG{o}{.}\PYG{n}{context}\PYG{p}{(),}\PYG{+w}{ }\PYG{n}{Compose}\PYG{o}{.}\PYG{n}{rectangle}\PYG{p}{(),}\PYG{+w}{ }\PYG{n}{fill}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}white\PYGZdq{}}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{plot}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{draw}\PYG{p}{(}\PYG{n}{PNG}\PYG{p}{(}\PYG{n}{name}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{IMG\PYGZus{}W}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{IMG\PYGZus{}H}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{img}\PYG{p}{)}
+\PYG{k}{end}
+
+\PYG{k}{function}\PYG{+w}{ }\PYG{n}{report}\PYG{p}{(}\PYG{n}{title}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{g}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{comps}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{connected\PYGZus{}components}\PYG{p}{(}\PYG{n}{g}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{largest}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{isempty}\PYG{p}{(}\PYG{n}{comps}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{?}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{maximum}\PYG{p}{(}\PYG{n}{length}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{comps}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{println}\PYG{p}{(}\PYG{n}{title}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}   Вершин:                 \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{nv}\PYG{p}{(}\PYG{n}{g}\PYG{p}{))}
+\PYG{+w}{    }\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}   Рёбер:                  \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ne}\PYG{p}{(}\PYG{n}{g}\PYG{p}{))}
+\PYG{+w}{    }\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}   Компонент связности:    \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{length}\PYG{p}{(}\PYG{n}{comps}\PYG{p}{))}
+\PYG{+w}{    }\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}   Крупнейшая компонента:  \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{largest}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}   Плотность:              \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{round}\PYG{p}{(}\PYG{n}{nv}\PYG{p}{(}\PYG{n}{g}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{?}\PYG{+w}{ }\PYG{l+m+mf}{0.0}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{n}{ne}\PYG{p}{(}\PYG{n}{g}\PYG{p}{)}\PYG{o}{/}\PYG{p}{(}\PYG{n}{nv}\PYG{p}{(}\PYG{n}{g}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{nv}\PYG{p}{(}\PYG{n}{g}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)),}\PYG{+w}{ }\PYG{n}{digits}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{))}
+\PYG{+w}{    }\PYG{n}{println}\PYG{p}{()}
+\PYG{k}{end}
+
+\PYG{n}{degrees}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{degree}\PYG{p}{(}\PYG{n}{g\PYGZus{}original}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{v}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{nv}\PYG{p}{(}\PYG{n}{g\PYGZus{}original}\PYG{p}{)]}
+\PYG{n}{hubs}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sortperm}\PYG{p}{(}\PYG{n}{degrees}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{rev}\PYG{o}{=}\PYG{n+nb}{true}\PYG{p}{)[}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{REMOVE\PYGZus{}K}\PYG{p}{]}
+\PYG{n}{hubs\PYGZus{}set}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kt}{Set}\PYG{p}{(}\PYG{n}{hubs}\PYG{p}{)}
+
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Хабы (топ\PYGZhy{}}\PYG{l+s+si}{\PYGZdl{}REMOVE\PYGZus{}K}\PYG{l+s}{ по степени): \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{sort}\PYG{p}{(}\PYG{n}{hubs}\PYG{p}{))}
+
+\PYG{n}{colors\PYGZus{}orig}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{hubs\PYGZus{}set}\PYG{+w}{ }\PYG{o}{?}\PYG{+w}{ }\PYG{l+s+sa}{colorant}\PYG{l+s}{\PYGZdq{}red\PYGZdq{}}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+sa}{colorant}\PYG{l+s}{\PYGZdq{}deepskyblue\PYGZdq{}}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{]}
+\PYG{n}{sizes\PYGZus{}orig}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{hubs\PYGZus{}set}\PYG{+w}{ }\PYG{o}{?}\PYG{+w}{ }\PYG{n}{NODE\PYGZus{}SIZE\PYGZus{}HUB}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{NODE\PYGZus{}SIZE\PYGZus{}NORMAL}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{]}
+
+\PYG{n}{p1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{gplot}\PYG{p}{(}\PYG{n}{g\PYGZus{}original}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nodelabel}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nodefillc}\PYG{o}{=}\PYG{n}{colors\PYGZus{}orig}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nodesize}\PYG{o}{=}\PYG{n}{sizes\PYGZus{}orig}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{edgelinewidth}\PYG{o}{=}\PYG{n}{EDGE\PYGZus{}WIDTH}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nodelabelsize}\PYG{o}{=}\PYG{n}{LABEL\PYGZus{}SIZE}\PYG{p}{)}
+\PYG{n}{save\PYGZus{}png}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}plots/1\PYGZus{}original.png\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{p1}\PYG{p}{)}
+
+\PYG{n}{non\PYGZus{}hubs}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{collect}\PYG{p}{(}\PYG{n}{setdiff}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{hubs\PYGZus{}set}\PYG{p}{))}
+\PYG{n}{rand\PYGZus{}vertices}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{shuffle}\PYG{p}{(}\PYG{n}{non\PYGZus{}hubs}\PYG{p}{)[}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{REMOVE\PYGZus{}K}\PYG{p}{]}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Удалённые случайные вершины: \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{sort}\PYG{p}{(}\PYG{n}{rand\PYGZus{}vertices}\PYG{p}{))}
+
+\PYG{n}{remaining}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sort}\PYG{p}{(}\PYG{n}{setdiff}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{rand\PYGZus{}vertices}\PYG{p}{))}
+\PYG{n}{mapping}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kt}{Dict}\PYG{p}{(}\PYG{n}{old}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n}{new}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{new}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{old}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{enumerate}\PYG{p}{(}\PYG{n}{remaining}\PYG{p}{))}
+\PYG{n}{g\PYGZus{}rand}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Graph}\PYG{p}{(}\PYG{n}{length}\PYG{p}{(}\PYG{n}{remaining}\PYG{p}{))}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n}{e}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{edges}\PYG{p}{(}\PYG{n}{g\PYGZus{}original}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{v1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{v2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{src}\PYG{p}{(}\PYG{n}{e}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{dst}\PYG{p}{(}\PYG{n}{e}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{v1}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{v2}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining}
+\PYG{+w}{        }\PYG{n}{add\PYGZus{}edge!}\PYG{p}{(}\PYG{n}{g\PYGZus{}rand}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mapping}\PYG{p}{[}\PYG{n}{v1}\PYG{p}{],}\PYG{+w}{ }\PYG{n}{mapping}\PYG{p}{[}\PYG{n}{v2}\PYG{p}{])}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{n}{x\PYGZus{}rand}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{x}\PYG{p}{[}\PYG{n}{v}\PYG{p}{]}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining}\PYG{p}{]}
+\PYG{n}{y\PYGZus{}rand}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{y}\PYG{p}{[}\PYG{n}{v}\PYG{p}{]}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining}\PYG{p}{]}
+\PYG{n}{labels\PYGZus{}rand}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{string}\PYG{p}{(}\PYG{n}{v}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining}\PYG{p}{]}
+
+\PYG{n}{remaining\PYGZus{}hubs}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{v}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{hubs\PYGZus{}set}\PYG{p}{]}
+\PYG{n}{colors\PYGZus{}rand}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining\PYGZus{}hubs}\PYG{+w}{ }\PYG{o}{?}\PYG{+w}{ }\PYG{l+s+sa}{colorant}\PYG{l+s}{\PYGZdq{}red\PYGZdq{}}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+sa}{colorant}\PYG{l+s}{\PYGZdq{}orange\PYGZdq{}}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining}\PYG{p}{]}
+\PYG{n}{sizes\PYGZus{}rand}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining\PYGZus{}hubs}\PYG{+w}{ }\PYG{o}{?}\PYG{+w}{ }\PYG{n}{NODE\PYGZus{}SIZE\PYGZus{}HUB}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{NODE\PYGZus{}SIZE\PYGZus{}NORMAL}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining}\PYG{p}{]}
+
+\PYG{n}{p2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{gplot}\PYG{p}{(}\PYG{n}{g\PYGZus{}rand}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x\PYGZus{}rand}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y\PYGZus{}rand}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nodelabel}\PYG{o}{=}\PYG{n}{labels\PYGZus{}rand}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nodefillc}\PYG{o}{=}\PYG{n}{colors\PYGZus{}rand}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nodesize}\PYG{o}{=}\PYG{n}{sizes\PYGZus{}rand}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{edgelinewidth}\PYG{o}{=}\PYG{n}{EDGE\PYGZus{}WIDTH}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nodelabelsize}\PYG{o}{=}\PYG{n}{LABEL\PYGZus{}SIZE}\PYG{p}{)}
+\PYG{n}{save\PYGZus{}png}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}plots/2\PYGZus{}random\PYGZus{}deletion.png\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{p2}\PYG{p}{)}
+
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Удалённые хабы: \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{sort}\PYG{p}{(}\PYG{n}{hubs}\PYG{p}{))}
+
+\PYG{n}{remaining\PYGZus{}hubs\PYGZus{}del}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{collect}\PYG{p}{(}\PYG{n}{setdiff}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{hubs}\PYG{p}{))}
+\PYG{n}{mapping\PYGZus{}hubs}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kt}{Dict}\PYG{p}{(}\PYG{n}{old}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n}{new}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{new}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{old}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{enumerate}\PYG{p}{(}\PYG{n}{remaining\PYGZus{}hubs\PYGZus{}del}\PYG{p}{))}
+\PYG{n}{g\PYGZus{}hubs}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Graph}\PYG{p}{(}\PYG{n}{length}\PYG{p}{(}\PYG{n}{remaining\PYGZus{}hubs\PYGZus{}del}\PYG{p}{))}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n}{e}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{edges}\PYG{p}{(}\PYG{n}{g\PYGZus{}original}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{v1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{v2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{src}\PYG{p}{(}\PYG{n}{e}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{dst}\PYG{p}{(}\PYG{n}{e}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{v1}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining\PYGZus{}hubs\PYGZus{}del}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{v2}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining\PYGZus{}hubs\PYGZus{}del}
+\PYG{+w}{        }\PYG{n}{add\PYGZus{}edge!}\PYG{p}{(}\PYG{n}{g\PYGZus{}hubs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mapping\PYGZus{}hubs}\PYG{p}{[}\PYG{n}{v1}\PYG{p}{],}\PYG{+w}{ }\PYG{n}{mapping\PYGZus{}hubs}\PYG{p}{[}\PYG{n}{v2}\PYG{p}{])}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{n}{x\PYGZus{}hubs}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{x}\PYG{p}{[}\PYG{n}{v}\PYG{p}{]}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining\PYGZus{}hubs\PYGZus{}del}\PYG{p}{]}
+\PYG{n}{y\PYGZus{}hubs}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{y}\PYG{p}{[}\PYG{n}{v}\PYG{p}{]}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining\PYGZus{}hubs\PYGZus{}del}\PYG{p}{]}
+\PYG{n}{labels\PYGZus{}hubs}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{string}\PYG{p}{(}\PYG{n}{v}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{remaining\PYGZus{}hubs\PYGZus{}del}\PYG{p}{]}
+
+\PYG{n}{colors\PYGZus{}hubs}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{fill}\PYG{p}{(}\PYG{l+s+sa}{colorant}\PYG{l+s}{\PYGZdq{}lightblue\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{length}\PYG{p}{(}\PYG{n}{remaining\PYGZus{}hubs\PYGZus{}del}\PYG{p}{))}
+\PYG{n}{sizes\PYGZus{}hubs}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{fill}\PYG{p}{(}\PYG{n}{NODE\PYGZus{}SIZE\PYGZus{}NORMAL}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{length}\PYG{p}{(}\PYG{n}{remaining\PYGZus{}hubs\PYGZus{}del}\PYG{p}{))}
+
+\PYG{n}{p3}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{gplot}\PYG{p}{(}\PYG{n}{g\PYGZus{}hubs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x\PYGZus{}hubs}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y\PYGZus{}hubs}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nodelabel}\PYG{o}{=}\PYG{n}{labels\PYGZus{}hubs}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nodefillc}\PYG{o}{=}\PYG{n}{colors\PYGZus{}hubs}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nodesize}\PYG{o}{=}\PYG{n}{sizes\PYGZus{}hubs}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{edgelinewidth}\PYG{o}{=}\PYG{n}{EDGE\PYGZus{}WIDTH}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nodelabelsize}\PYG{o}{=}\PYG{n}{LABEL\PYGZus{}SIZE}\PYG{p}{)}
+\PYG{n}{save\PYGZus{}png}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}plots/3\PYGZus{}targeted\PYGZus{}deletion.png\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{p3}\PYG{p}{)}
+
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{✓ 1\PYGZus{}original.png\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}✓ 2\PYGZus{}random\PYGZus{}deletion.png\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}✓ 3\PYGZus{}targeted\PYGZus{}deletion.png\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}=\PYGZdq{}}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{60}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}РЕЗУЛЬТАТЫ ЭКСПЕРИМЕНТА\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}=\PYGZdq{}}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{60}\PYG{p}{)}
+
+\PYG{n}{report}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Исходная сеть:\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{g\PYGZus{}original}\PYG{p}{)}
+\PYG{n}{report}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}После случайного удаления:\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{g\PYGZus{}rand}\PYG{p}{)}
+\PYG{n}{report}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}После удаления хабов:\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{g\PYGZus{}hubs}\PYG{p}{)}
+
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{ИНТЕРПРЕТАЦИЯ:\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Если после удаления хабов крупнейшая компонента резко меньше\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}или число компонент больше — сеть уязвима к целевым атакам.\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}=\PYGZdq{}}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{60}\PYG{p}{)}
+
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{Файлы сохранены:\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}plots/1\PYGZus{}original.png\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}plots/2\PYGZus{}random\PYGZus{}deletion.png\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}plots/3\PYGZus{}targeted\PYGZus{}deletion.png\PYGZdq{}}\PYG{p}{)}
+\end{MintedVerbatim}

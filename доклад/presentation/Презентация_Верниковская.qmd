@@ -326,9 +326,9 @@ format:
 \caption{Результаты эксперимента}
 \begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
 \hline
-\textbf{Сценарий} & \textbf{Вершин} & \textbf{Рёбер} & \textbf{Компонент} & \textbf{Крупнейшая} \\ \hline
+\textbf{Сценарий} & \textbf{Вершин} & \textbf{Рёбер} & \textbf{Компонент связности} & \textbf{Крупнейшая компонента} \\ \hline
 Исходная сеть & 20 & 36 & 1 & 20 \\ \hline
-Случайное удаление & 15 & 19 & 1 & 15 \\ \hline
+Случайное удаление & 15 & 25 & 1 & 15 \\ \hline
 Удаление хабов & 15 & 8 & 8 & 8 \\ \hline
 \end{tabular}
 \end{table}
