@@ -1,0 +1,15 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n}{N}\PYG{o}{=}\PYG{l+m+mi}{1670}
+\PYG{n}{p1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{0.133}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.000033}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N}\PYG{p}{]}
+\PYG{n}{p2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{0.0000132}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.32}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N}\PYG{p}{]}
+\PYG{n}{p3}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{0.8}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.15}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{N}\PYG{p}{]}
+\PYG{n}{n\PYGZus{}0}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{12}
+
+\PYG{n}{tspan1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{20.0}\PYG{p}{)}
+\PYG{n}{tspan2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.04}\PYG{p}{)}
+\PYG{n}{tspan3}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.0}\PYG{p}{)}
+
+\PYG{n}{prob1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ODEProblem}\PYG{p}{(}\PYG{n}{f}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{n\PYGZus{}0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tspan1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{p1}\PYG{p}{)}
+\PYG{n}{prob2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ODEProblem}\PYG{p}{(}\PYG{n}{f}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{n\PYGZus{}0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tspan2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{p2}\PYG{p}{)}
+\PYG{n}{prob3}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ODEProblem}\PYG{p}{(}\PYG{n}{f3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{n\PYGZus{}0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tspan3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{p3}\PYG{p}{)}
+\end{MintedVerbatim}

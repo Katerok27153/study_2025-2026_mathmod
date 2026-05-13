@@ -1,0 +1,4 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n}{sol3}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{solve}\PYG{p}{(}\PYG{n}{prob3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Tsit5}\PYG{p}{(),}\PYG{+w}{ }\PYG{n}{saveat}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.0001}\PYG{p}{)}
+\PYG{n}{p3}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{plot}\PYG{p}{(}\PYG{n}{sol3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{markersize}\PYG{+w}{ }\PYG{o}{=:}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{yaxis}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}N(t)\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{label}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}n\PYGZdq{}}\PYG{p}{)}
+\end{MintedVerbatim}

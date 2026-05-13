@@ -1,0 +1,13 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n}{dev}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{sol2}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{Val}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{})}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{o}{:}\PYG{l+m+mf}{0.0001}\PYG{o}{:}\PYG{l+m+mf}{0.04}\PYG{p}{]}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Максимальное значение: \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{maximum}\PYG{p}{(}\PYG{n}{dev}\PYG{p}{))}
+
+\PYG{n}{findall}\PYG{p}{(}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{maximum}\PYG{p}{(}\PYG{n}{dev}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{dev}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Индексы максимума: \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{findall}\PYG{p}{(}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{maximum}\PYG{p}{(}\PYG{n}{dev}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{dev}\PYG{p}{))}
+
+\PYG{n}{x}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sol2}\PYG{o}{.}\PYG{n}{t}\PYG{p}{[}\PYG{l+m+mi}{94}\PYG{p}{]}
+\PYG{n}{y}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sol2}\PYG{o}{.}\PYG{n}{u}\PYG{p}{[}\PYG{l+m+mi}{94}\PYG{p}{]}
+
+\PYG{n}{p2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{plot}\PYG{p}{(}\PYG{n}{sol2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{yaxis}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}N(t)\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{label}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}n\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{scatter!}\PYG{p}{((}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{leg}\PYG{o}{=}\PYG{l+s+ss}{:bottomright}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{label}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}максимальная скорость\PYGZdq{}}\PYG{p}{)}
+\end{MintedVerbatim}

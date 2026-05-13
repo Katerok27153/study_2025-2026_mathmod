@@ -1,0 +1,6 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n}{mkpath}\PYG{p}{(}\PYG{n}{plotsdir}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}lab07\PYGZdq{}}\PYG{p}{))}
+\PYG{n}{savefig}\PYG{p}{(}\PYG{n}{p1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{plotsdir}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}lab07\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}lab07\PYGZus{}1.png\PYGZdq{}}\PYG{p}{))}
+\PYG{n}{savefig}\PYG{p}{(}\PYG{n}{p2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{plotsdir}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}lab07\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}lab07\PYGZus{}2.png\PYGZdq{}}\PYG{p}{))}
+\PYG{n}{savefig}\PYG{p}{(}\PYG{n}{p3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{plotsdir}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}lab07\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}lab07\PYGZus{}3.png\PYGZdq{}}\PYG{p}{))}
+\end{MintedVerbatim}
