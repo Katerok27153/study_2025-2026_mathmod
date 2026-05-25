@@ -1,0 +1,9 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k}{function}\PYG{+w}{ }\PYG{n}{f1}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{p}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{M1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{M2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{u}
+\PYG{+w}{    }\PYG{n}{a1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{a2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{c1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{c2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{p}
+\PYG{+w}{    }\PYG{n}{M1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{M1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a1}\PYG{o}{/}\PYG{n}{c1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{M1}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{b}\PYG{o}{/}\PYG{n}{c1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{M1}\PYG{o}{*}\PYG{n}{M2}
+\PYG{+w}{    }\PYG{n}{M2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{c2}\PYG{o}{/}\PYG{n}{c1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{M2}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a2}\PYG{o}{/}\PYG{n}{c1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{M2}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{b}\PYG{o}{/}\PYG{n}{c1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{M1}\PYG{o}{*}\PYG{n}{M2}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{M1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{M2}\PYG{p}{]}
+\PYG{k}{end}
+\end{MintedVerbatim}

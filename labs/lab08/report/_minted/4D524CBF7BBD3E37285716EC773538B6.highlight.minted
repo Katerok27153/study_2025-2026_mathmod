@@ -1,0 +1,4 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n}{sol1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{solve}\PYG{p}{(}\PYG{n}{prob1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Tsit5}\PYG{p}{(),}\PYG{+w}{ }\PYG{n}{saveat}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.01}\PYG{p}{)}
+\PYG{n}{p1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{plot}\PYG{p}{(}\PYG{n}{sol1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{yaxis}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Оборотные средства предприятия\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{label}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+s}{\PYGZdq{}M1\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}M2\PYGZdq{}}\PYG{p}{])}
+\end{MintedVerbatim}

@@ -1,0 +1,8 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n}{A}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[(}\PYG{n}{a1}\PYG{o}{/}\PYG{n}{c1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{b}\PYG{o}{/}\PYG{n}{c1}\PYG{p}{);}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{b}\PYG{o}{/}\PYG{n}{c1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a2}\PYG{o}{/}\PYG{n}{c1}\PYG{p}{)]}
+\PYG{n}{b1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{c2}\PYG{o}{/}\PYG{n}{c1}\PYG{p}{)]}
+\PYG{n}{x}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{A}\PYG{+w}{ }\PYG{o}{\PYGZbs{}}\PYG{+w}{ }\PYG{n}{b1}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Решение: \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{)}
+
+\PYG{n}{prob1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ODEProblem}\PYG{p}{(}\PYG{n}{f1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{u0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tspan}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{p}\PYG{p}{)}
+\end{MintedVerbatim}
